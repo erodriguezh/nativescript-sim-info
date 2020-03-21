@@ -1,12 +1,12 @@
 <Page
-    navigatingTo="onNavigatingTo" 
+    navigatingTo="onNavigatingTo"
     xmlns="http://schemas.nativescript.org/tns.xsd">
-    
+
     <ActionBar>
-        <Label text="Home"></Label>
+        <Label text="Sim Info"></Label>
     </ActionBar>
 
     <GridLayout>
-        <!-- Add your page content here -->
+        <Label margin="20" textWrap="true" text="{{ simData }}" />
     </GridLayout>
 </Page>
