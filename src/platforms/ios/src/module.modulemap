@@ -1,0 +1,4 @@
+module TelephonyInfo {
+    header "TelephonyInfo.h"
+    export *
+}
