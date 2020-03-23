@@ -14,7 +14,9 @@ export interface SimData {
   deviceSoftwareVersion?: string;
   simSerialNumber?: string;
   subscriberId?: string;
+  subscriptionId?: number | null;
   mcc?: string;
   mnc?: string;
-  allowsVOIP?: boolean;
+  allowsVOIP?: boolean | null;
+  isDefaultSim?: boolean | null;
 }
