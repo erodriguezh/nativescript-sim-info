@@ -1,7 +1,7 @@
 {
 	"name": "nativescript-sim-info",
 	"version": "1.0.0",
-	"description": "A Nativescript lugin for getting inf from the sim card.",
+	"description": "A Nativescript plugin for getting info from the sim card.",
 	"main": "sim-info",
 	"typings": "index.d.ts",
 	"nativescript": {
