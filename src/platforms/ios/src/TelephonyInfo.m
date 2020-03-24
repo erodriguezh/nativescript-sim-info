@@ -36,7 +36,7 @@
   NSDictionary *dictionary = @{
     @"carrierName" : (carrier.carrierName!=NULL) ? carrier.carrierName : @"",
     @"isoCountryCode" : (carrier.isoCountryCode!=NULL) ? carrier.isoCountryCode : @"",
-    @"allowsVOIP" : (carrier.allowsVOIP) ? @(carrier.allowsVOIP) : @"",
+    @"allowsVOIP" : (carrier.allowsVOIP) ? @(carrier.allowsVOIP) : nil,
     @"mcc" : (mobileCountryCode!=NULL) ? mobileCountryCode : @"",
     @"mnc" : (mobileNetworkCode!=NULL) ? mobileNetworkCode : @""
   };

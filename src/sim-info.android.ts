@@ -25,7 +25,7 @@ export class SimInfo {
   private hasPermission(): boolean {
     let hasPermission = false;
 
-    const isPermissionTypeGranted = function(permissionType) {
+    const isPermissionTypeGranted = (permissionType) => {
       return permissions.hasPermission(permissionType);
     };
 
@@ -83,8 +83,8 @@ export class SimInfo {
       carrierName: subscriber.getCarrierName() || '',
       isNetworkRoaming: subscriber.getDataRoaming() === 1 || null,
       phoneNumber: subscriber.getNumber() || '',
-      mcc: subscriber.getMcc() || '',
-      mnc: subscriber.getMnc() || '',
+      mcc: subscriber.getMcc() || null,
+      mnc: subscriber.getMnc() || null,
       subscriptionId: subscriber.getSubscriptionId() || null,
       simSerialNumber: subscriber.getIccId() || '',
       isDefaultSim: false,
