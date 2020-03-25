@@ -1,6 +1,6 @@
 {
 	"name": "nativescript-sim-info",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "A Nativescript plugin for getting info from the sim card.",
 	"main": "sim-info",
 	"typings": "index.d.ts",
@@ -31,10 +31,34 @@
 		"NativeScript",
 		"JavaScript",
 		"Android",
-		"iOS"
+		"iOS",
+		"dual",
+    "sim",
+		"isoCountryCode",
+		"carrierName",
+		"mcc",
+		"mnc",
+		"simOperator",
+		"callState",
+		"dataActivity",
+		"networkType",
+		"phoneType",
+		"simState",
+		"isNetworkRoaming",
+		"phoneNumber",
+		"Imei",
+		"Meid",
+		"SoftwareVersion",
+		"simSerialNumber",
+		"subscriberId",
+		"subscriptionId",
+		"isDefaultSim",
+		"simId",
+		"carrierId",
+		"allowsVOIP"
 	],
 	"author": {
-		"name": "Eduardo Rodriguez-Higueras",
+		"name": "Eduardo Rodriguez-Higueras"
 	},
 	"bugs": {
 		"url": "https://github.com/erodriguezh/nativescript-sim-info/issues"
