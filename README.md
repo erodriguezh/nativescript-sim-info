@@ -26,32 +26,131 @@ tns plugin add nativescript-sim-info
     }
 ```
 
+### Android Output
+
+#### Single Sim
+
+```json
+[
+    {
+        "isoCountryCode": "at",
+        "simOperator": "23XXX",
+        "carrierName": "A1",
+        "callState": null,
+        "dataActivity": null,
+        "phoneType": 1,
+        "simState": 5,
+        "isNetworkRoaming": true,
+        "mcc": 232,
+        "mnc": 1,
+        "phoneNumber": "",
+        "deviceSoftwareVersion": "01",
+        "simSerialNumber": "894301561923869XXXX",
+        "subscriberId": "23201163022XXXX",
+        "isDefaultSim": true,
+        "networkType": 13,
+        "deviceImei": "35404611160XXXX",
+        "deviceMeid": "",
+        "subscriptionId": 1
+    }
+]
+```
+
+#### Dual Sim
+
+```json
+[
+    {
+        "isoCountryCode": "at",
+        "simOperator": "23XXX",
+        "carrierName": "spusu",
+        "callState": null,
+        "dataActivity": 4,
+        "phoneType": 1,
+        "simState": 5,
+        "isNetworkRoaming": true,
+        "mcc": 232,
+        "mnc": 17,
+        "phoneNumber": "+4366XXXXXXXX",
+        "deviceSoftwareVersion": "00",
+        "simSerialNumber": "894317008000176XXXX",
+        "subscriberId": "23217004025XXXX",
+        "isDefaultSim": true,
+        "networkType": 13,
+        "deviceImei": "86760103133XXXX",
+        "deviceMeid": "9900111506XXXX",
+        "subscriptionId": 1
+    },
+    {
+        "isoCountryCode": "at",
+        "carrierName": "A1",
+        "isNetworkRoaming": true,
+        "phoneNumber": "+4366XXXXXXX",
+        "mcc": 232,
+        "mnc": 1,
+        "subscriptionId": 4,
+        "simSerialNumber": "894301561520280XXXX",
+        "isDefaultSim": false
+    }
+]
+```
+
+<details>
+<summary>Possible errors</summary>
+
+The plugin will request more or less permission items depending on the Android version. If any of the permissions are rejected by the user, an object will be returned as a rejected promise.
+
+```json
+{
+    "android.permission.READ_PHONE_STATE": false,
+    "android.permission.READ_SMS": false,
+    "android.permission.READ_PHONE_NUMBERS": false,
+}
+```
+</details>
+
+### iOS Output
+
+#### Single Sim
+
+```json
+[
+    {
+        "mnc": "232",
+        "isoCountryCode": "at",
+        "carrierName": "A1",
+        "allowsVOIP": true,
+        "mcc": "1"
+    }
+]
+```
+
 ## API
 
-| Property              | Platform | Type                   | Description                                                                                                             |
-|-----------------------|----------|------------------------|-------------------------------------------------------------------------------------------------------------------------|
-| isoCountryCode        | common   | string                 | Returns the ISO-3166 country code equivalent for the SIM provider's country code.                                       |
-| carrierName           | common   | string                 | Returns the MCC+MNC (mobile country code + mobile network code) of the provider of the SIM. 5 or 6 decimal digits.      |
-| mcc                   | common   | string - number - null | Returns the mobile country code (MCC).                                                                                  |
-| mnc                   | common   | string - number - null | Returns the mobile network code (MNC).                                                                                  |
-| simOperator           | android  | string                 | Returns the Service Provider Name (SPN).                                                                                |
-| callState             | android  | number - null          | Returns the state of all calls on the device.                                                                           |
-| dataActivity          | android  | number - null          | Returns a constant indicating the type of activity on a data connection (cellular).                                     |
-| networkType           | android  | number - null          | Returns a constant indicating the radio technology (network type) currently in use on the device for data transmission. |
-| phoneType             | android  | number - null          | Returns a constant indicating the device phone type.                                                                    |
-| simState              | android  | number - null          | Returns a constant indicating the state of the default SIM card.                                                        |
-| isNetworkRoaming      | android  | boolean - null         | Returns true if the device is considered roaming on the current network, for GSM purposes.                              |
-| phoneNumber           | android  | string                 | Returns the phone number string for line 1, for example, the MSISDN for a GSM phone. Returns null if it is unavailable. |
-| deviceImei            | android  | string                 | returns IMEI for GSM.                                                                                                   |
-| deviceMeid            | android  | string                 | returns MEID for CDMA.                                                                                                  |
-| deviceSoftwareVersion | android  | string                 | Returns the software version number for the device, for example, the IMEI/SV for GSM phones.                            |
-| simSerialNumber       | android  | string                 | Returns the serial number of the SIM, if applicable.                                                                    |
-| subscriberId          | android  | string                 | Returns the unique subscriber ID, for example, the IMSI for a GSM phone.                                                |
-| subscriptionId        | android  | number - null          | Returns the subscription ID.                                                                                            |
-| isDefaultSim          | android  | boolean - null         | Returns true if the sim is considered the default one.                                                                  |
-| simId                 | android  | number - null          | Returns the card ID of the SIM. Added in API level 29.                                                                  |
-| carrierId             | android  | number - null          | Returns the carrier ID of the SIM. Added in API level 29.                                                               |
-| allowsVOIP            | ios      | boolean - null         | Indicates if the carrier allows making VoIP calls on its network.                                                       |
+| Property              | Platform | Android Version | iOS Version | Type                   | Description                                                                                                             |
+|-----------------------|----------|-----------------|-------------|------------------------|-------------------------------------------------------------------------------------------------------------------------|
+| isoCountryCode        | common   | 1               | 1           | string                 | Returns the ISO-3166 country code equivalent for the SIM provider's country code.                                       |
+| carrierName           | common   | 1               | 1           | string                 | Returns the MCC+MNC (mobile country code + mobile network code) of the provider of the SIM. 5 or 6 decimal digits.      |
+| mcc                   | common   | 1               | 1           | string - number - null | Returns the mobile country code (MCC).                                                                                  |
+| mnc                   | common   | 1               | 1           | string - number - null | Returns the mobile network code (MNC).                                                                                  |
+| simOperator           | android  | 1               | -           | string                 | Returns the Service Provider Name (SPN).                                                                                |
+| callState             | android  | 1               | -           | number - null          | Returns the state of all calls on the device.                                                                           |
+| dataActivity          | android  | 1               | -           | number - null          | Returns a constant indicating the type of activity on a data connection (cellular).                                     |
+| phoneType             | android  | 1               | -           | number - null          | Returns a constant indicating the device phone type.                                                                    |
+| simState              | android  | 1               | -           | number - null          | Returns a constant indicating the state of the default SIM card.                                                        |
+| isNetworkRoaming      | android  | 1               | -           | boolean - null         | Returns true if the device is considered roaming on the current network, for GSM purposes.                              |
+| phoneNumber           | android  | 1               | -           | string                 | Returns the phone number string for line 1, for example, the MSISDN for a GSM phone. Returns null if it is unavailable. |
+| deviceSoftwareVersion | android  | 1               | -           | string                 | Returns the software version number for the device, for example, the IMEI/SV for GSM phones.                            |
+| simSerialNumber       | android  | 1               | -           | string                 | Returns the serial number of the SIM, if applicable.                                                                    |
+| subscriberId          | android  | 1               | -           | string                 | Returns the unique subscriber ID, for example, the IMSI for a GSM phone.                                                |
+| subscriptionId        | android  | 5.1 (Api: 22)   | -           | number - null          | Returns the subscription.                                                                                               |
+| simSerialNumber       | android  | 5.1 (Api: 22)   | -           | string                 | Returns SIM unique serial number (ICCID).                                                                               |
+| networkType           | android  | 7 (Api: 24)     | -           | number - null          | Returns a constant indicating the radio technology (network type) currently in use on the device for data transmission. |
+| deviceImei            | android  | 8 (Api: 26)     | -           | string                 | returns IMEI for GSM.                                                                                                   |
+| simId                 | android  | 10 (Api: 29)    | -           | number - null          | Returns the card ID of the SIM.                                                                                         |
+| carrierId             | android  | 10 (Api: 29)    | -           | number - null          | Returns the carrier ID of the SIM.                                                                                      |
+| isDefaultSim          | android  | -               | -           | boolean - null         | Returns true if the sim is considered the default.                                                                      |
+| allowsVOIP            | ios      | -               | 1           | boolean - null         | Indicates if the carrier allows making VoIP calls on its network.                                                       |                                                      |
 
 ### Android
 

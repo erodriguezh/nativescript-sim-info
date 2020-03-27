@@ -15,8 +15,10 @@ export interface SimData {
   simSerialNumber?: string;
   subscriberId?: string;
   subscriptionId?: number | null;
-  mcc?: string;
-  mnc?: string;
+  mcc?: string | number | null;
+  mnc?: string | number | null;
   allowsVOIP?: boolean | null;
   isDefaultSim?: boolean | null;
+  simId?: number | null;
+  carrierId?: number | null;
 }

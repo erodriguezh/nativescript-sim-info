@@ -1,6 +1,6 @@
 {
 	"name": "nativescript-sim-info",
-	"version": "1.0.1",
+	"version": "1.1.0",
 	"description": "A Nativescript plugin for getting info from the sim card.",
 	"main": "sim-info",
 	"typings": "index.d.ts",
@@ -33,7 +33,7 @@
 		"Android",
 		"iOS",
 		"dual",
-    "sim",
+		"sim",
 		"isoCountryCode",
 		"carrierName",
 		"mcc",
@@ -66,8 +66,8 @@
 	"license": "Apache-2.0",
 	"homepage": "https://github.com/erodriguezh/nativescript-sim-info",
 	"devDependencies": {
-		"tns-core-modules": "^6.0.0",
-		"tns-platform-declarations": "^6.0.0",
+		"tns-core-modules": "^6.5.0",
+		"tns-platform-declarations": "^6.5.0",
 		"typescript": "~3.4.5",
 		"prompt": "^1.0.0",
 		"rimraf": "^2.6.3",
