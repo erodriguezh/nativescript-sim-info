@@ -51,7 +51,7 @@ export class SimInfo {
       const telephonyManagerData = this.getDataFromTelephonyManager(telephonyManager);
 
       if (this.apiLevel >= 22) { // android.os.Build.VERSION_CODES.LOLLIPOP_MR1 - 22
-        const subscriptionManager: android.telephony.SubscriptionManager = applicationModule.android.context.getSystemService('telephony_subscription_service');
+        const subscriptionManager = applicationModule.android.context.getSystemService('telephony_subscription_service');
         const subscriberList = subscriptionManager.getActiveSubscriptionInfoList();
         const subscribersData = this.getDataFromSubscriberList(subscriberList);
 
@@ -62,7 +62,7 @@ export class SimInfo {
             subscribersData[i] = Object.assign({}, telephonyManagerData, subscribersData[i], { isDefaultSim: true });
           }
         }
-        console.log(subscribersData);
+
         return Promise.resolve(subscribersData);
       } else {
         return Promise.resolve([telephonyManagerData]);
@@ -76,7 +76,7 @@ export class SimInfo {
    * Iterate over all the sim cards and get the data
    * @param subscribers {SubscriptionInfo[]}
    */
-  private getDataFromSubscriberList(subscribers: java.util.List<android.telephony.SubscriptionInfo>): SimData[] {
+  private getDataFromSubscriberList(subscribers: java.util.List<any>): SimData[] {
     const subscribersData = [];
     const subscribersArray = subscribers.toArray();
 
@@ -91,7 +91,7 @@ export class SimInfo {
    * @description if apiLevel 29 it gets extra data: simId, carrierId
    * @param subscriber {SubscriptionInfo}
    */
-  private getDataFromSubscriber(subscriber: android.telephony.SubscriptionInfo): SimData {
+  private getDataFromSubscriber(subscriber: any): SimData {
     let data: SimData = {
       isoCountryCode: subscriber.getCountryIso() || '',
       carrierName: subscriber.getCarrierName() || '',
@@ -138,6 +138,11 @@ export class SimInfo {
       isDefaultSim: true,
     };
 
+    if (data.simOperator.length >= 3) {
+      data.mcc = data.simOperator.substring(0, 3);
+      data.mnc = data.simOperator.substring(3);
+    }
+
     if (this.apiLevel >= 24) {
       data = Object.assign({}, data, {
         networkType: manager['getDataNetworkType']() || null,
@@ -151,10 +156,6 @@ export class SimInfo {
       });
     }
 
-    if (data.simOperator.length >= 3) {
-      data.mcc = data.simOperator.substring(0, 3);
-      data.mnc = data.simOperator.substring(3);
-    }
     return data;
   }
 
