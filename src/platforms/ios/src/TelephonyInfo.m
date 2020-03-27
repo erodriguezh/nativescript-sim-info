@@ -16,8 +16,7 @@
       [providersData addObject: [self getDataFromCarrier:value]];
     }
 
-    return [self stringify: ([providersData count] == 1) ? [providersData firstObject] : providersData];
-
+    return [self stringify: providersData];
   } else {
     CTCarrier *carrier = networkInfo.subscriberCellularProvider;
     NSMutableArray *result = [[NSMutableArray alloc]init];
