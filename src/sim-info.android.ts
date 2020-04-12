@@ -103,15 +103,6 @@ export class SimInfo {
       simSerialNumber: subscriber.getIccId() || '',
       isDefaultSim: false,
     };
-
-    if (this.apiLevel >= 29) {
-      data = Object.assign({}, data, {
-        simId: subscriber.getCardId() || null,
-        carrierId: subscriber.getCarrierId() || null,
-        mcc: subscriber.getMccString() || '',
-        mnc: subscriber.getMncString() || '',
-      });
-    }
     return data;
   }
 
