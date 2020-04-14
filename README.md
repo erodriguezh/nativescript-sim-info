@@ -147,8 +147,6 @@ The plugin will request more or less permission items depending on the Android v
 | simSerialNumber       | android  | 5.1 (Api: 22)   | -           | string                 | Returns SIM unique serial number (ICCID).                                                                               |
 | networkType           | android  | 7 (Api: 24)     | -           | number - null          | Returns a constant indicating the radio technology (network type) currently in use on the device for data transmission. |
 | deviceImei            | android  | 8 (Api: 26)     | -           | string                 | returns IMEI for GSM.                                                                                                   |
-| simId                 | android  | 10 (Api: 29)    | -           | number - null          | Returns the card ID of the SIM.                                                                                         |
-| carrierId             | android  | 10 (Api: 29)    | -           | number - null          | Returns the carrier ID of the SIM.                                                                                      |
 | isDefaultSim          | android  | -               | -           | boolean - null         | Returns true if the sim is considered the default.                                                                      |
 | allowsVOIP            | ios      | -               | 1           | boolean - null         | Indicates if the carrier allows making VoIP calls on its network.                                                       |                                                      |
 
