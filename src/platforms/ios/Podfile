@@ -1,0 +1,1 @@
+pod 'TelephonyInfo', :git => 'https://github.com/erodriguezh/TelephonyInfo.git'
