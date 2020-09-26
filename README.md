@@ -154,7 +154,7 @@ The plugin will request more or less permission items depending on the Android v
 
 #### Dual-Sim Support
 
-From Api Level 22, A.K.A LOLLIPOP_MR1 or Android 5.1, there is support for dual sim. I would like to point out that there is a difference in number of information attributes between what Android considers the default sim and the secondaries.
+From Api Level 22, A.K.A LOLLIPOP_MR1 or Android 5.1, there is support for dual sim. I would like to point out that there is a difference in number of information attributes between what Android considers the default subscription (TelephonyManager) and the subscriptions (SubscriptionManager).
 
 ### iOS
 

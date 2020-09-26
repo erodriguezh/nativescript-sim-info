@@ -1,4 +1,4 @@
-import * as applicationModule from 'tns-core-modules/application';
+import { Application } from '@nativescript/core';
 import * as permissions from 'nativescript-permissions';
 import { SimData } from './sim-info.common';
 
@@ -47,18 +47,18 @@ export class SimInfo {
     }
 
     return getData.then(() => {
-      const telephonyManager: android.telephony.TelephonyManager = applicationModule.android.context.getSystemService(android.content.Context.TELEPHONY_SERVICE);
+      const telephonyManager: android.telephony.TelephonyManager = Application.android.context.getSystemService(android.content.Context.TELEPHONY_SERVICE);
       const telephonyManagerData = this.getDataFromTelephonyManager(telephonyManager);
 
       if (this.apiLevel >= 22) { // android.os.Build.VERSION_CODES.LOLLIPOP_MR1 - 22
-        const subscriptionManager = applicationModule.android.context.getSystemService('telephony_subscription_service');
+        const subscriptionManager = Application.android.context.getSystemService('telephony_subscription_service');
         const subscriberList = subscriptionManager.getActiveSubscriptionInfoList();
         const subscribersData = this.getDataFromSubscriberList(subscriberList);
 
-        // TelephoynManager gets the data from the default sim. Then if Dual Sim, find the simSerialNumber that matches from both
-        // the subsriptionManager and telehpnyManager
+        // TelephoynManager gets the data from the default sim. Then if Dual Sim, find the phoneNumber that matches from both
+        // the subscriptionManager and telephoynManager
         for (let i = 0; i < subscribersData.length; i++) {
-          if (subscribersData[i].simSerialNumber ===  telephonyManagerData.simSerialNumber) {
+          if (subscribersData[i].phoneNumber ===  telephonyManagerData.phoneNumber) {
             subscribersData[i] = Object.assign({}, telephonyManagerData, subscribersData[i], { isDefaultSim: true });
           }
         }
@@ -124,26 +124,19 @@ export class SimInfo {
       mnc: '',
       phoneNumber: manager.getLine1Number() || '',
       deviceSoftwareVersion: manager.getDeviceSoftwareVersion() || '',
-      simSerialNumber: manager.getSimSerialNumber() || '',
-      subscriberId: manager.getSubscriberId() || '',
       isDefaultSim: true,
     };
 
     if (data.simOperator.length >= 3) {
-      data.mcc = data.simOperator.substring(0, 3);
-      data.mnc = data.simOperator.substring(3);
+      data = Object.assign({}, data, {
+        mcc: data.simOperator.substring(0, 3),
+        mnc: data.simOperator.substring(3),
+      });
     }
-
+    
     if (this.apiLevel >= 24) {
       data = Object.assign({}, data, {
         networkType: manager['getDataNetworkType']() || null,
-      });
-    }
-
-    if (this.apiLevel >= 26) {
-      data = Object.assign({}, data, {
-        deviceImei: manager['getImei']() || '',
-        deviceMeid: manager['getMeid']() || '',
       });
     }
 
