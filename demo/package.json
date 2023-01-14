@@ -6,7 +6,7 @@
     "@nativescript/theme": "~2.2.1",
     "nativescript-sim-info": "file:../src",
     "@nativescript/core": "7.0.0",
-    "@nativescript/webpack": "3.0.0"
+    "@nativescript/webpack": "5.0.12"
   },
   "devDependencies": {
     "@nativescript/android": "7.0.0",
